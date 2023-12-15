@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:23:42 by juguerre          #+#    #+#             */
-/*   Updated: 2023/05/19 01:23:44 by juguerre         ###   ########.fr       */
+/*   Updated: 2023/12/15 20:03:50 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,18 @@ char	*ft_strchr_gnl(const char *str, int c)
 	return (tmp);
 }
 
-static void	allocate_memory(char *s1, char *s2, char *new_str)
+static char	*allocate_memory(char *s1, char *s2)
 {
-	int	s1_len;
-	int	s2_len;
+	char	*new_str;
+	int		s1_len;
+	int		s2_len;
 
 	s1_len = ft_strlen_gnl(s1);
 	s2_len = ft_strlen_gnl(s2);
 	new_str = malloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (!new_str)
-		return ;
+		return (NULL);
+	return (new_str);
 }
 
 char	*ft_strjoin_gnl(char *s1, char *s2)
@@ -58,8 +60,9 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	new_str = NULL;
-	allocate_memory(s1, s2, new_str);
+	new_str = allocate_memory(s1, s2);
+	if (!new_str)
+		return NULL;
 	while (s1[i] != '\0')
 	{
 		new_str[i] = s1[i];

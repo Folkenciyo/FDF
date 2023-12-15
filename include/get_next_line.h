@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juguerre <juguerre@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:15:06 by juguerre          #+#    #+#             */
-/*   Updated: 2023/11/09 13:15:06 by juguerre         ###   ########.fr       */
+/*   Updated: 2023/12/15 20:03:23 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 10
 
 # endif
 
