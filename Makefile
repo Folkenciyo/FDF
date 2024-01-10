@@ -45,7 +45,7 @@ SRC_DIR			= src/
 OBJ_DIR			= obj/
 CC				= gcc
 CFLAGS			= -Wall -Werror -Wextra -g3 -I
-MLX42           = MLX42/libmlx42.a
+MLX42           = MLX42/build/libmlx42.a
 HEADER          = $(MLX42) $(LIBFT)/libft.a -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw -L "/Users/juguerre/.brew/opt/glfw/lib/" 
 RM				= rm -f
 AR				= ar rcs
@@ -110,6 +110,9 @@ re:			fclean all
 			@echo " |   |     |       .'  |   |"
 			@echo " '---'     '-----''    '---'"
 
-
+git: fclean
+			@git add .
+			@git commit -m "auto commit"
+			@git push
 
 .PHONY:		all clean fclean re libmlx

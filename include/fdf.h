@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:46:39 by juguerre          #+#    #+#             */
-/*   Updated: 2023/12/15 19:46:26 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/01/10 21:19:17 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,42 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <string.h>
-# include "/Users/juguerre/Desktop/FDF/fdf/MLX42/include/MLX42/MLX42.h"
+# include "/Users/juguerre/Desktop/FDF/FDF/MLX42/include/MLX42/MLX42.h"
+
+typedef struct s_dot
+{
+	float		x;
+	float		y;
+	float		z;
+	int			is_last;
+	int			color;
+	int 		map_height;
+	int 		map_width;
+}				t_dot;
+
+typedef struct s_window
+{
+	int			scale;
+	int			z_scale;
+	int			is_isometric;
+	double		angle;
+	int			win_x;
+	int			win_y;
+	int			shift_x;
+	int			shift_y;
+	void		*win_ptr;
+}				t_window;
 
 typedef struct s_matrix
 {
-	int	**map;
-	int	map_height;
-	int	map_width;
+	t_dot	**map;
+	int		map_h;
+	int		map_w;
 }				t_matrix;
 
 /**** Read File Functions ****/
 
-t_matrix	**read_map(char *file);
+t_matrix	*read_map(char *file);
 
 /**** Error Functions ****/
 void		error_one(char *str_perror, int exit_);
