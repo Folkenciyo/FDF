@@ -55,7 +55,7 @@ AR				= ar rcs
 
 #Sources
 
-SRC_FILES	=	main error read_map
+SRC_FILES	=	main error read_map draw max_min
 
 SRCS 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

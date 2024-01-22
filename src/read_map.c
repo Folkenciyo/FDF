@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:07:57 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/10 22:00:25 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/01/22 19:20:17 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	get_dots_from_line(char *line, t_dot **matrix_of_dots, int y)
 
 	dots = ft_split(line, ' ');
 	x = 0;
+	
 	while (dots[x])
 	{
 		matrix_of_dots[y][x].z = ft_atoi(dots[x]);
@@ -89,7 +90,6 @@ void print_matrix(t_dot **matrix)
     int y = 0;
     int x;
 
-	printf("PLAES\n");
     while (matrix[y])
     {
         x = 0;
@@ -112,13 +112,13 @@ t_matrix	*read_map(char *file)
 	matrix = mem_allocate(file);
 	fd = open(file, O_RDONLY, 0);
 	y = 0;
-	while (y > matrix->map_h)
+	while (y < matrix->map_h)
 	{
 		line = get_next_line(fd);
 		get_dots_from_line(line, matrix->map, y);
 		y++;
 	}
-	print_matrix(matrix->map);
+	//print_matrix(matrix->map);
 	matrix->map[y] = NULL;
 	close(fd);
 	return (matrix);
