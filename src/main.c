@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:12:11 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/22 21:08:10 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/01/23 21:12:03 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	set_default(t_window *window)
 {
-	window->scale = 15;
-	window->z_scale = 1;
+	window->scale = 75;
+	window->z_scale = 4;
 	window->is_isometric = 1;
-	window->angle = 0.523599;
+	window->angle = 0.423599;
 	window->win_x = 2000;
 	window->win_y = 1000;
 	window->shift_x = window->win_x / 3;
 	window->shift_y = window->win_y / 3;
 	window->win_ptr = mlx_init(window->win_x, window->win_y, "FDF", 0);
-	window->img = mlx_new_image(window->win_ptr, SIZE, SIZE);
+	window->img = mlx_new_image(window->win_ptr, window->win_x, window->win_y);
 }
 
 int	main(int argc, char **argv)
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	matrix = read_map(*++argv);
 	set_default(window);
 	ft_draw(matrix->map, window);
-	mlx_image_to_window(window->win_ptr, window->img, 350, 0);
+	mlx_image_to_window(window->win_ptr, window->img, 0, 0);
 	mlx_loop(window->win_ptr);
 	return (0);
 }

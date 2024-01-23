@@ -1,43 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   max_min.c                                          :+:      :+:    :+:   */
+/*   error_msg.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 18:29:04 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/23 19:38:53 by juguerre         ###   ########.fr       */
+/*   Created: 2024/01/23 19:23:18 by juguerre          #+#    #+#             */
+/*   Updated: 2024/01/23 19:26:51 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef ERROR_MSG_H
+# define ERROR_MSG_H
 
-float	ft_max(float a, float b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
+# define ERR_FILE			"Wrong usage, use ./fdf MAPFILE"
+# define ERR_FILE_EXTENSION	"Use .fdf file extension"
+# define ERR_FD				"Opening file failed."
+# define ERR_INIT			"Initialization failed."
+# define ERR_MAP_INIT		"Map initialization failed."
+# define ERR_COORD_INIT		"Coord initialization failed."
 
-float	ft_min(float a, float b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
-float	fmodule(float i)
-{
-	if (i < 0)
-		return (-i);
-	return (i);
-}
-
-int	ft_color(t_dot a, t_dot b)
-{
-	if (a.z || b.z)
-		return (RED);
-	if (a.z != b.z)
-		return (MAGENTA);
-	return (CYAN);
-}
+#endif

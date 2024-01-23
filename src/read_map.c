@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:07:57 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/22 19:20:17 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/01/23 21:28:07 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	get_dots_from_line(char *line, t_dot **matrix_of_dots, int y)
 
 	dots = ft_split(line, ' ');
 	x = 0;
-	
+
 	while (dots[x])
 	{
 		matrix_of_dots[y][x].z = ft_atoi(dots[x]);
@@ -62,7 +62,7 @@ static t_matrix	*mem_allocate(char *file)
 	int			y;
 	char		*line;
 
-	matrix = (t_matrix *)malloc(sizeof(t_matrix *));
+	matrix = (t_matrix *)malloc(sizeof(t_matrix));
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
 	matrix->map_h = 1;
@@ -73,7 +73,7 @@ static t_matrix	*mem_allocate(char *file)
 	}
 	close(fd);
 	matrix->map = (t_dot **)malloc(sizeof(t_dot *) * (matrix->map_h + 1));
-	matrix->map[matrix->map_h + 1] = NULL;
+	matrix->map[matrix->map_h] = NULL;
 	y = 0;
 	while (y < matrix->map_h)
 	{
@@ -83,23 +83,6 @@ static t_matrix	*mem_allocate(char *file)
 	}
 	matrix->map[y] = NULL;
 	return (matrix);
-}
-
-void print_matrix(t_dot **matrix)
-{
-    int y = 0;
-    int x;
-
-    while (matrix[y])
-    {
-        x = 0;
-        while (!matrix[y][x].is_last)
-        {
-            printf("Point at matrix[%d][%d]: x = %f, y = %f, z = %f\n", y, x, matrix[y][x].x, matrix[y][x].y, matrix[y][x].z);
-            x++;
-        }
-        y++;
-    }
 }
 
 t_matrix	*read_map(char *file)
@@ -118,7 +101,6 @@ t_matrix	*read_map(char *file)
 		get_dots_from_line(line, matrix->map, y);
 		y++;
 	}
-	//print_matrix(matrix->map);
 	matrix->map[y] = NULL;
 	close(fd);
 	return (matrix);

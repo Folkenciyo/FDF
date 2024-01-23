@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:46:39 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/22 21:06:08 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/01/23 21:26:04 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "libft.h"
+# include "colours.h"
+# include "error_msg.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <errno.h>
 # include <math.h>
 # include <string.h>
 # include "/Users/juguerre/Desktop/FDF/FDF/MLX42/include/MLX42/MLX42.h"
-# define SIZE 7500
 
 typedef struct s_dot
 {
@@ -61,17 +62,21 @@ typedef struct s_matrix
 
 t_matrix	*read_map(char *file);
 
-/**** MIN & MAX Functions ****/
+/**** Draw Utils Functions ****/
 
 float		ft_max(float a, float b);
 
 float		ft_min(float a, float b);
 
-float	fmodule(float i);
+float		fmodule(float i);
+
+int			ft_color(t_dot a, t_dot b);
 
 /**** Draw Functions ****/
 
 void		ft_draw(t_dot **matrix, t_window *window);
+
+void		print_menu(t_window *window);
 
 /**** Error Functions ****/
 
