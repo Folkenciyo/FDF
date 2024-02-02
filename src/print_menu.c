@@ -6,22 +6,48 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:51:58 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/23 20:27:44 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:28:27 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void	half_menu_print(t_window *window, char *menu)
+{
+	menu = "up";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 80, 4, 0xfff4b2, menu);
+	menu = "^";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 83, 21, 0xfff4b2, menu);
+	menu = "down";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 70, 55, 0xfff4b2, menu);
+	menu = "V";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 83, 36, 0xfff4b2, menu);
+	menu = "|";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 83, 26, 0xfff4b2, menu);
+	menu = "left <-";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 10, 25, 0xfff4b2, menu);
+	menu = "-> right";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 96, 25, 0xfff4b2, menu);
+	menu = "3D-2D: 5";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 10, 82, 0xf6e57c, menu);
+}
+
 void	print_menu(t_window *window)
 {
 	char	*menu;
 
-	menu = "up, down, left, right: move picture";
-	mlx_put_string(window->mlx_ptr, window->win_ptr, 10, 5);
-	menu = "5, spase: 3d/2d mode; +, -: zoom";
-	mlx_put_string(window->mlx_ptr, window->win_ptr, 10, 20);
-	menu = "8, 2: z-scale; 4, 6: rotation";
-	mlx_put_string(window->mlx_ptr, window->win_ptr, 10, 35);
+	menu = NULL;
+	half_menu_print(window, menu);
+	menu = "Zoom: -- ";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 10, 124, 0xfbe042, menu);
+	menu = "|+|";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 65, 110, 0xfbe042, menu);
+	menu = "|-|";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 65, 135, 0xfbe042, menu);
 	menu = "f: full screen mode";
-	mlx_put_string(window->mlx_ptr, window->win_ptr, 10, 50);
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 10, 170, 0xfbd803, menu);
+	menu = "Z-Scale: 2 & 8";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 10, 195, 0xf0c43d, menu);
+	menu = "Rotate: 4 & 6";
+	mlx_string_put(window->mlx_ptr, window->win_ptr, 10, 220, 0xF0B23D, menu);
 }

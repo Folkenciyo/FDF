@@ -6,72 +6,50 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 18:19:39 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/23 20:30:17 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:10:23 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	isometric(t_dot *dot, double angle)
+float	fmodule(float i)
 {
-	dot->x = (dot->x - dot->y) * cos(angle);
-	dot->y = (dot->x + dot->y) * sin(angle) - dot->z;
+	if (i < 0)
+		return (-i);
+	return (i);
 }
 
-static void	zoom(t_dot *a, t_dot *b, t_window *window)
-{
-	a->x *= window->scale;
-	a->y *= window->scale;
-	b->x *= window->scale;
-	b->y *= window->scale;
-	a->z *= window->z_scale;
-	b->z *= window->z_scale;
-}
-
-static void	set_window(t_dot *a, t_dot *b, t_window *window)
-{
-	zoom(a, b, window);
-	if (window->is_isometric)
-	{
-		isometric(a, window->angle);
-		isometric(b, window->angle);
-	}
-	a->x += window->shift_x;
-	a->y += window->shift_y;
-	b->x += window->shift_x;
-	b->y += window->shift_y;
-}
-
-static void	line(t_dot a, t_dot b, t_window *window)
+void	line(t_dot a, t_dot b, t_window *param)
 {
 	float	step_x;
 	float	step_y;
 	float	max;
 	int		color;
 
-	set_window(&a, &b, window);
+	set_window(&a, &b, param);
 	step_x = b.x - a.x;
 	step_y = b.y - a.y;
 	max = ft_max(fmodule(step_x), fmodule(step_y));
 	step_x /= max;
 	step_y /= max;
-	color = ft_color(a, b);
+	color = (b.z || a.z) ? 0xfc0345 : 0xBBFAFF;
+	color = (b.z != a.z) ? 0xfc031c : color;
 	while ((int)(a.x - b.x) || (int)(a.y - b.y))
 	{
-		mlx_put_pixel(window->img, a.x, a.y, color);
+		mlx_pixel_put(param->mlx_ptr, param->win_ptr, a.x, a.y, color);
 		a.x += step_x;
 		a.y += step_y;
-		if (a.x > window->win_x || a.y > window->win_y || a.y < 0 || a.x < 0)
+		if (a.x > param->win_x || a.y > param->win_y || a.y < 0 || a.x < 0)
 			break ;
 	}
 }
 
-void	ft_draw(t_dot **matrix, t_window *window)
+void	draw(t_dot **matrix, t_window *window)
 {
 	int		y;
 	int		x;
 
-	//print_menu(window);
+	print_menu(window);
 	y = 0;
 	while (matrix[y])
 	{
@@ -80,7 +58,9 @@ void	ft_draw(t_dot **matrix, t_window *window)
 		{
 			if (matrix[y + 1])
 				line(matrix[y][x], matrix[y + 1][x], window);
-			if (matrix[y][x].is_last)
+			if (!matrix[y][x].is_last)
+				line(matrix[y][x], matrix[y][x + 1], window);
+			if (matrix[y][x].is_last != 0)
 				break ;
 			x++;
 		}

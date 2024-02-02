@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:07:57 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/23 21:28:07 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:21:58 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,39 +55,38 @@ int	ft_count_words(char *str, char c)
 	return (count);
 }
 
-static t_matrix	*mem_allocate(char *file)
+static t_dot	**mem_allocate(char *file)
 {
-	t_matrix	*matrix;
-	int			fd;
+	t_dot		**new_matrix;
+	int			x;
 	int			y;
+	int			fd;
 	char		*line;
 
-	matrix = (t_matrix *)malloc(sizeof(t_matrix));
-	fd = open(file, O_RDONLY);
+	fd = open(file, O_RDONLY, 0);
+	if (fd <= 0)
+		error_one("file does not exist", 1);
 	line = get_next_line(fd);
-	matrix->map_h = 1;
-	matrix->map_w = ft_count_words(line, ' ');
-	while (get_next_line(fd))
-	{
-		matrix->map_h++;
-	}
-	close(fd);
-	matrix->map = (t_dot **)malloc(sizeof(t_dot *) * (matrix->map_h + 1));
-	matrix->map[matrix->map_h] = NULL;
+	x = ft_count_words(line, ' ');
+	free(line);
 	y = 0;
-	while (y < matrix->map_h)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		matrix->map[y] = (t_dot *)malloc(sizeof(t_dot) * (matrix->map_w + 1));
-		matrix->map[y][matrix->map_w].is_last = 1;
 		y++;
+		free(line);
+		line = get_next_line(fd);
 	}
-	matrix->map[y] = NULL;
-	return (matrix);
+	new_matrix = (t_dot **)malloc(sizeof(t_dot *) * (++y + 1));
+	while (y > 0)
+		new_matrix[--y] = (t_dot *)malloc(sizeof(t_dot) * (x + 1));
+	close(fd);
+	return (new_matrix);
 }
 
-t_matrix	*read_map(char *file)
+t_dot	**read_map(char *file)
 {
-	t_matrix	*matrix;
+	t_dot		**matrix;
 	int			y;
 	int			fd;
 	char		*line;
@@ -95,13 +94,14 @@ t_matrix	*read_map(char *file)
 	matrix = mem_allocate(file);
 	fd = open(file, O_RDONLY, 0);
 	y = 0;
-	while (y < matrix->map_h)
+	line = get_next_line(fd);
+	while (line)
 	{
+		get_dots_from_line(line, matrix, y++);
 		line = get_next_line(fd);
-		get_dots_from_line(line, matrix->map, y);
-		y++;
 	}
-	matrix->map[y] = NULL;
+	free(line);
+	matrix[y] = NULL;
 	close(fd);
 	return (matrix);
 }

@@ -45,8 +45,8 @@ SRC_DIR			= src/
 OBJ_DIR			= obj/
 CC				= gcc
 CFLAGS			= -Wall -Werror -Wextra -g3 -I
-MLX42           = MLX42/build/libmlx42.a
-HEADER          = $(MLX42) $(LIBFT)/libft.a -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw -L "/Users/juguerre/.brew/opt/glfw/lib/" 
+MLX42           = minilibx_macos/libmlx.a
+HEADER          = $(MLX42) $(LIBFT)/libft.a -framework OpenGL -framework AppKit
 RM				= rm -f
 AR				= ar rcs
 
@@ -55,7 +55,7 @@ AR				= ar rcs
 
 #Sources
 
-SRC_FILES	=	main error read_map draw max_min print_menu
+SRC_FILES	=	main error read_map draw max_min print_menu set_window deal_key window_size
 
 SRCS 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

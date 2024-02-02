@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 18:29:04 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/23 19:38:53 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/01/31 15:54:22 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ float	ft_min(float a, float b)
 	if (a < b)
 		return (a);
 	return (b);
-}
-
-float	fmodule(float i)
-{
-	if (i < 0)
-		return (-i);
-	return (i);
 }
 
 int	ft_color(t_dot a, t_dot b)
