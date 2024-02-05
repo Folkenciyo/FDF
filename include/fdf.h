@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:46:39 by juguerre          #+#    #+#             */
-/*   Updated: 2024/02/02 18:00:46 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/02/05 23:24:10 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ typedef struct s_dot
 }				t_dot;
 
 t_dot			**read_map(char *file_name);
-void			isometric(t_dot *dot, double angle);
 void			draw(t_dot **matrix, t_window *window);
 int				deal_key(int key, t_dot **matrix);
 void			set_window(t_dot *a, t_dot *b, t_window *window);

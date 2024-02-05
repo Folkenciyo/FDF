@@ -6,13 +6,13 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:12:11 by juguerre          #+#    #+#             */
-/*   Updated: 2024/02/02 18:03:03 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/02/05 21:04:39 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_window	*set_default(t_window *window)
+static t_window	*set_default(t_window *window)
 {
 	window->scale = 20;
 	window->z_scale = 1;
@@ -28,7 +28,7 @@ t_window	*set_default(t_window *window)
 	return (window);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_dot		**matrix;
 

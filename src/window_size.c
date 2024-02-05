@@ -6,13 +6,13 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:35:33 by juguerre          #+#    #+#             */
-/*   Updated: 2024/02/02 16:34:29 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/02/05 21:27:55 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		check_win_size(int key, t_window *window)
+int	check_win_size(int key, t_window *window)
 {
 	if ((key == 0 && window->win_y <= 500)
 		|| (key == 6 && window->win_x <= 500))
@@ -23,7 +23,7 @@ int		check_win_size(int key, t_window *window)
 	return (0);
 }
 
-void window_change(t_window *window, int old_x, int old_y)
+static void	window_change(t_window *window, int old_x, int old_y)
 {
 	if (window->win_x == 2560)
 		window->win_x = old_x;
@@ -35,10 +35,10 @@ void window_change(t_window *window, int old_x, int old_y)
 		window->win_y = 1400;
 }
 
-void	full_screen(t_window *window)
+static void	full_screen(t_window *window)
 {
-	static int old_x;
-	static int old_y;
+	static int	old_x;
+	static int	old_y;
 
 	if (window->win_x != 2560)
 	{
@@ -48,7 +48,7 @@ void	full_screen(t_window *window)
 	window_change(window, old_x, old_y);
 }
 
-void	change_window_size(int key, t_window *window)
+static void	change_window_size(int key, t_window *window)
 {
 	if (check_win_size(key, window))
 		return ;

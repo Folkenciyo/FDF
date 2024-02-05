@@ -6,20 +6,22 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:07:57 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/31 17:21:58 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/02/05 23:25:24 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	get_dots_from_line(char *line, t_dot **matrix_of_dots, int y)
+static int	get_dots_from_line(char *line, t_dot **matrix_of_dots, int y)
 {
 	char	**dots;
 	int		x;
+	char	*tmp;
 
-	dots = ft_split(line, ' ');
+	tmp = ft_strtrim(line, "\n");
+	free(line);
+	dots = ft_split(tmp, ' ');
 	x = 0;
-
 	while (dots[x])
 	{
 		matrix_of_dots[y][x].z = ft_atoi(dots[x]);
@@ -29,12 +31,12 @@ int	get_dots_from_line(char *line, t_dot **matrix_of_dots, int y)
 		free(dots[x++]);
 	}
 	free(dots);
-	free(line);
+	free(tmp);
 	matrix_of_dots[y][--x].is_last = 1;
 	return (x);
 }
 
-int	ft_count_words(char *str, char c)
+static int	ft_count_words(char *str, char c)
 {
 	int	count;
 	int	i;

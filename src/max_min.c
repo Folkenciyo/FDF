@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 18:29:04 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/31 15:54:22 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/02/05 23:24:31 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,13 @@ float	ft_min(float a, float b)
 
 int	ft_color(t_dot a, t_dot b)
 {
+	int	color;
+
 	if (a.z || b.z)
-		return (RED);
+		color = 0xfc0345;
+	else
+		color = 0xBBFAFF;
 	if (a.z != b.z)
-		return (MAGENTA);
-	return (CYAN);
+		color = 0xfc031c;
+	return (color);
 }

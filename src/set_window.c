@@ -6,26 +6,17 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:42:44 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/31 13:55:02 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/02/05 21:12:04 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-
-/*
-**	default angle: 0.523599
-**	make the figure 3d (isometric stile)
-*/
-
-#include "fdf.h"
-
-void	isometric(t_dot *dot, double angle)
+static void	isometric(t_dot *dot, double angle)
 {
 	dot->x = (dot->x - dot->y) * cos(angle);
 	dot->y = (dot->x + dot->y) * sin(angle) - dot->z;
 }
-
 
 static void	zoom(t_dot *a, t_dot *b, t_window *window)
 {

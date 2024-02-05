@@ -6,7 +6,7 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 18:19:39 by juguerre          #+#    #+#             */
-/*   Updated: 2024/01/31 17:10:23 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/02/05 23:23:10 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void	line(t_dot a, t_dot b, t_window *param)
 	max = ft_max(fmodule(step_x), fmodule(step_y));
 	step_x /= max;
 	step_y /= max;
-	color = (b.z || a.z) ? 0xfc0345 : 0xBBFAFF;
-	color = (b.z != a.z) ? 0xfc031c : color;
+	color = ft_color(a, b);
 	while ((int)(a.x - b.x) || (int)(a.y - b.y))
 	{
 		mlx_pixel_put(param->mlx_ptr, param->win_ptr, a.x, a.y, color);

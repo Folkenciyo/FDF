@@ -6,13 +6,13 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:23:57 by juguerre          #+#    #+#             */
-/*   Updated: 2024/02/02 17:59:50 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/02/05 21:24:02 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	is_isometric(int iso)
+static int	is_isometric(int iso)
 {
 	if (iso == 0)
 	{
@@ -21,7 +21,7 @@ int	is_isometric(int iso)
 	return (0);
 }
 
-int	is_key(int key)
+static int	is_key(int key)
 {
 	return (key == 24 || key == 69 || key == 27 || key == 78 || \
 	key == 91 || key == 28 || key == 84 || key == 19 || \
@@ -30,7 +30,7 @@ int	is_key(int key)
 	key == 49 || key == 88 || key == 22);
 }
 
-void	do_key(int key, t_window *window)
+static void	do_key(int key, t_window *window)
 {
 	if (key == 24 || key == 69)
 		window->scale += 3;
@@ -56,11 +56,12 @@ void	do_key(int key, t_window *window)
 		window->angle -= 0.05;
 }
 
-int		deal_key(int key, t_dot **matrix)
+int	deal_key(int key, t_dot **matrix)
 {
 	if (is_key(key))
 	{
-		mlx_clear_window(matrix[1]->window->mlx_ptr, matrix[1]->window->win_ptr);
+		mlx_clear_window(matrix[1]->window->mlx_ptr,
+			matrix[1]->window->win_ptr);
 		do_key(key, matrix[1]->window);
 		print_menu(matrix[1]->window);
 		draw(matrix, matrix[1]->window);
@@ -69,7 +70,8 @@ int		deal_key(int key, t_dot **matrix)
 		new_window(key, matrix, matrix[1]->window);
 	if (key == '5')
 	{
-		mlx_destroy_window(matrix[1]->window->mlx_ptr, matrix[1]->window->win_ptr);
+		mlx_destroy_window(matrix[1]->window->mlx_ptr,
+			matrix[1]->window->win_ptr);
 		free(matrix);
 		exit(0);
 	}

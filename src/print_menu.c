@@ -6,13 +6,13 @@
 /*   By: juguerre <juguerre@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:51:58 by juguerre          #+#    #+#             */
-/*   Updated: 2024/02/02 18:28:27 by juguerre         ###   ########.fr       */
+/*   Updated: 2024/02/05 21:13:12 by juguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	half_menu_print(t_window *window, char *menu)
+static void	half_menu_print(t_window *window, char *menu)
 {
 	menu = "up";
 	mlx_string_put(window->mlx_ptr, window->win_ptr, 80, 4, 0xfff4b2, menu);
