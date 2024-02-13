@@ -1,95 +1,49 @@
-# FDF
-Proyecto FDF de Telefónica 42 Málaga
+# Readme - Proyecto FDF de Telefónica 42 Málaga
 
-ESTRUCTURA DEL PROYECTO
+Este es el Readme para el proyecto FDF desarrollado por el equipo de Telefónica 42 en Málaga. Aquí encontrarás una guía detallada sobre la estructura del proyecto, cómo utilizarlo y recursos adicionales para su desarrollo y comprensión.
 
-** ------------------------------------------- Cómo hacer -------------------------------------------
-** 1. leer archivo
-**      - obtener altura (cuántas líneas tiene el texto)
-**      - obtener ancho (cuántos números hay en una línea)
-**      - asignar memoria para **int utilizando el ancho y la altura (mira tu ft_strsplit())
-**      - leer archivo y escribir números en la matriz **int
-**          utilizando ft_strsplit() y atoi()
-**	--------------
-** 2. función de dibujo de líneas (buscar algoritmo de Bresenham en Google)
-**       - determinar cuánto necesitamos aumentar x y cuánto necesitamos aumentar y
-**          utilizando flotantes. Ejemplo:
-**              x = 2; x1 = 4;
-**              y = 2; y1 = 6;
-**              pasos para x: 2
-**              pasos para y: 4
-**              eso significa que y debería crecer dos veces más rápido que x
-**              en cada paso del bucle: y += 1 y x += 0.5
-**              después de 4 pasos, x e y serán iguales a x1, y1
-**
-**                  real x:y        x:y     píxeles
-**      inicio:     2.0 : 2.0       2:2     .
-**      paso1:      2.5 : 3.0       2:3     .
-**      paso2:      3.0 : 4.0       3:4      .
-**      paso3:      3.5 : 5.0       3:5      .
-**      paso4:      4.0 : 6.0       4:6       .
-**
-**              esto funciona porque (float)2.5 se convierte en (int)2 en la función mlx_pixel_put()
-** --------------                                                                  |
-** 3. función que dibuja líneas entre cada punto
-**      - ejemplo:
-**              0->     0->     0->     0
-**              |       |       |       |
-**
-**              0->     10->    10->    0
-**              |       |       |       |
-**
-**              0->     10->    10->    0
-**              |       |       |       |
-**
-**              0->     0->     0->     0
-**          '->' y '|' son líneas entre puntos
-**          cada punto tiene dos líneas (derecha y abajo): 0->
-** ----------------
-** 4. añadiendo 3D
-**      - cambiar coordenadas utilizando fórmulas isométricas:
-**          x' = (x - y) * cos(ángulo) 
-            y' = (x + y) * sin(ángulo) - z
-**      - x' e y'` son coordenadas en formato 3D (ángulo predeterminado 0.8)
-**	----------------
-**  5. añadiendo bonificaciones (movimiento, rotación, zoom)
-**      - cuando presionas un botón en el teclado, la función mlx_key_hook(win_ptr, deal_key, NULL);
-**          llama a la función deal_key.
-**      - En la función deal_key, debes cambiar algunos parámetros, borrar la ventana con
-**          mlx_clear_window(mlx_ptr, win_ptr); y redibujar la imagen
-** ----------------
-**  6. manejo de errores
-**      - verificar si argc == 2
-**      - verificar si el archivo existe: if ((fd = open(file_name, O_RDONLY) > 0))
-** ----------------
-**  7. corregir fugas de memoria
-**      - escribe leaks a.out o leaks fdf en tu terminal
+## Estructura del Proyecto
 
+El proyecto se estructura en varias etapas claves:
 
+1. **Leer Archivo**: Selecciona un archivo de texto que contenga datos para crear un mapa en 3D. Este proceso implica obtener la altura y el ancho del mapa, asignar memoria y leer los números del archivo en una matriz.
 
-**  ------------------------------- resourses --------------------------------
-**	--------------- 3D ------------------------------------------
-**		x` = (x - y) * cos(angle);
-**		y` = (x + y) * sin(angle) - z;
-**	-------------------------------------------------------------
-** 	------- mlx_function ----------------------------------------
-**		void *mlx_ptr;
-**		void *win_prt;
-**
-**		mlx_ptr = mlx_init();
-**		win_prt = mlx_new_window(mlx_ptr, 1000, 1000, "FDF");
-**
-**		mlx_pixel_put(mlx_ptr, win_ptr, (int)x, (int)y, #color);
-**
-**		mlx_key_hook(win_ptr, deal_key, NULL);
-**		mlx_loop(mlx_ptr);
-**	--------------------------------------------------------------
-**	------- deal_key prototype -----------------------------------
-**		int		deal_key(int key, void *data);
-**	--------------------------------------------------------------
-**	colors:
-**		white = 0xffffff
-**		red = 0xe80c0c
-**	----------------------------
-**	frameworks:
-**		-framework OpenGL -framework AppKit
+2. **Función de Dibujo de Líneas**: Utiliza el algoritmo de Bresenham para dibujar líneas en la pantalla. Este algoritmo calcula los pasos necesarios para aumentar tanto en la coordenada x como en la coordenada y de manera proporcional para obtener líneas diagonales precisas.
+
+3. **Función que Dibuja Líneas entre Cada Punto**: Esta función crea líneas entre cada punto en el mapa, formando una malla o cuadrícula.
+
+4. **Añadiendo 3D**: Se introduce la perspectiva 3D utilizando fórmulas isométricas para cambiar las coordenadas de los puntos en el plano 2D a un espacio tridimensional.
+
+5. **Añadiendo Bonificaciones**: Se implementan mejoras como movimiento, rotación y zoom controlados mediante interacción del teclado.
+
+6. **Manejo de Errores**: Se manejan errores comunes como la falta de argumentos en la línea de comandos o la inexistencia del archivo especificado.
+
+7. **Corrección de Fugas de Memoria**: Se verifica y corrige cualquier fuga de memoria que pueda ocurrir durante la ejecución del programa.
+
+## Recursos
+
+- **Funciones Matemáticas 3D**: Se proporcionan las fórmulas necesarias para convertir las coordenadas a un espacio 3D.
+  
+- **Funciones mlx**: Se detallan las funciones proporcionadas por la biblioteca mlx utilizada para la manipulación de ventanas y gráficos.
+
+- **Prototipo deal_key**: Se muestra el prototipo de la función utilizada para manejar la interacción del teclado.
+
+- **Colores y Frameworks**: Se especifican los colores disponibles y los frameworks necesarios para compilar el proyecto.
+
+## Uso
+
+Para ejecutar el proyecto, sigue los siguientes pasos:
+
+1. Compila el proyecto utilizando los frameworks especificados.
+   
+2. Ejecuta el programa proporcionando como argumento el archivo de datos del mapa.
+   
+3. Utiliza las teclas del teclado según las bonificaciones implementadas para interactuar con el mapa.
+
+Recuerda corregir cualquier fuga de memoria utilizando las herramientas mencionadas.
+
+¡Disfruta explorando el proyecto FDF!
+
+---
+
+*Nota: Este Readme proporciona una visión general del proyecto FDF y no pretende ser una guía exhaustiva. Consulta la documentación y código fuente para obtener detalles específicos de implementación.*
