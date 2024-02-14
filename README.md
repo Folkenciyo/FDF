@@ -1,6 +1,16 @@
-# Readme - Proyecto FDF de Telefónica 42 Málaga
+<br/>
+<h1 align="center">FDF</h1>
+<p align="center">
+ <img tyle="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="" height=50% width=50%>
+</p>
 
-Este es el Readme para el proyecto FDF desarrollado por el equipo de Telefónica 42 en Málaga. Aquí encontrarás una guía detallada sobre la estructura del proyecto, cómo utilizarlo y recursos adicionales para su desarrollo y comprensión.
+ <p align="center">
+    Este es el Readme para el proyecto FDF desarrollado por el equipo de Telefónica 42 en Málaga. Aquí encontrarás una guía detallada sobre la estructura del proyecto, cómo utilizarlo y recursos adicionales para su desarrollo y comprensión.
+    <br/>
+    <br/>
+  </p>
+</p>
+
 
 ## Estructura del Proyecto
 
